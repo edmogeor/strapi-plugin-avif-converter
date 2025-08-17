@@ -2,6 +2,8 @@
 
 A plugin for [Strapi](https://github.com/strapi/strapi) that automatically converts uploaded images to the AVIF format using the [sharp](https://sharp.pixelplumbing.com/api-output#avif) library. It ensures that your images are optimized for web performance by leveraging the benefits of the AVIF format.
 
+Based on the original [strapi-plugin-webp-converter](https://github.com/alexisbouchez/strapi-plugin-webp-converter) by Alexis Bouchez.
+
 ### Supported Strapi versions
 
 - v5.x.x
