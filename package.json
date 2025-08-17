@@ -26,7 +26,8 @@
     "watch": "strapi-plugin watch",
     "watch:link": "strapi-plugin watch:link",
     "verify": "strapi-plugin verify",
-    "test:ts:back": "run -T tsc -p server/tsconfig.json"
+    "test:ts:back": "run -T tsc -p server/tsconfig.json",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@strapi/sdk-plugin": "^5.2.7",

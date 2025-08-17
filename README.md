@@ -10,6 +10,7 @@ A plugin for [Strapi](https://github.com/strapi/strapi) that automatically conve
 
 ## Installation
 
+### Option 1: From npm (recommended)
 ```sh
 npm install strapi-plugin-avif-converter
 ```
@@ -19,6 +20,21 @@ npm install strapi-plugin-avif-converter
 ```sh
 yarn add strapi-plugin-avif-converter
 ```
+
+### Option 2: From GitHub source
+If installing directly from GitHub, you need to build the plugin after installation:
+
+```sh
+# Clone the repository
+git clone https://github.com/your-username/strapi-plugin-avif-converter.git
+cd strapi-plugin-avif-converter
+
+# Install dependencies and build
+npm install
+npm run build
+```
+
+**Note**: The `dist` folder is not included in the GitHub repository and must be built locally.
 
 ## Configuration
 
