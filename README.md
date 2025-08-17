@@ -51,6 +51,8 @@ module.exports = ({ env }) => ({
     config: {
       // mimeTypes that converts to AVIF. Default is ['image/png', 'image/jpeg', 'image/jpg']
       mimeTypes: undefined,
+      // Array of filename patterns to ignore during conversion
+      ignoreFilenames: [],
       options: {
         // AVIF options: https://sharp.pixelplumbing.com/api-output#avif
       },
@@ -70,6 +72,8 @@ export default () => ({
     config: {
       // mimeTypes that converts to AVIF. Default is ['image/png', 'image/jpeg', 'image/jpg']
       mimeTypes: undefined,
+      // Array of filename patterns to ignore during conversion
+      ignoreFilenames: [],
       options: {
         // AVIF options: https://sharp.pixelplumbing.com/api-output#avif
       },
@@ -77,3 +81,32 @@ export default () => ({
   },
 });
 ```
+
+### Ignore Filename Patterns
+
+You can configure the plugin to ignore specific files during conversion by using the `ignoreFilenames` option. This accepts an array of filename patterns that support glob syntax:
+
+```javascript
+module.exports = ({ env }) => ({
+  'avif-converter': {
+    enabled: true,
+    config: {
+      ignoreFilenames: [
+        'logo.png',           // Exact filename match
+        '*.thumbnail.*',      // Any file with "thumbnail" in the name
+        'temp-*',            // Files starting with "temp-"
+        '**/*-original.*',   // Any file with "-original" in the name
+        '*.svg',             // All SVG files (though they wouldn't convert anyway)
+      ],
+    },
+  },
+});
+```
+
+**Pattern Examples:**
+- `'logo.png'` - Ignores exactly "logo.png"
+- `'*.thumbnail.*'` - Ignores "image.thumbnail.jpg", "photo.thumbnail.png", etc.
+- `'temp-*'` - Ignores "temp-image.jpg", "temp-photo.png", etc.
+- `'**/*-backup.*'` - Ignores any file with "-backup" in any subdirectory
+
+The plugin uses [minimatch](https://github.com/isaacs/minimatch) for pattern matching, supporting standard glob patterns.

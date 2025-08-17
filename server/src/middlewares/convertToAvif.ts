@@ -4,12 +4,14 @@ import sharp, { AvifOptions } from 'sharp';
 import { promises as fs } from 'fs';
 import { parse, join, dirname } from 'path';
 import { Files, File } from 'formidable';
+import { minimatch } from 'minimatch';
 
 const DEFAULT_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
 
 export default ({ config }, { strapi }: { strapi: Core.Service }) => {
   const IMAGE_TYPES = config('mimeTypes', DEFAULT_IMAGE_TYPES);
   const SHARP_OPTIONS = config('options');
+  const IGNORE_FILENAMES = config('ignoreFilenames', []);
 
   return async (ctx: Context, next: Next) => {
     const isUpload =
@@ -27,11 +29,11 @@ export default ({ config }, { strapi }: { strapi: Core.Service }) => {
 
         if (Array.isArray(fileOrFiles)) {
           for (const file of fileOrFiles) {
-            await processFile(file, ctx, IMAGE_TYPES, SHARP_OPTIONS, strapi);
+            await processFile(file, ctx, IMAGE_TYPES, SHARP_OPTIONS, IGNORE_FILENAMES, strapi);
           }
         } else {
           const file = fileOrFiles as File;
-          await processFile(file, ctx, IMAGE_TYPES, SHARP_OPTIONS, strapi);
+          await processFile(file, ctx, IMAGE_TYPES, SHARP_OPTIONS, IGNORE_FILENAMES, strapi);
         }
       }
     }
@@ -45,9 +47,21 @@ const processFile = async (
   ctx: Context,
   IMAGE_TYPES: string[],
   SHARP_OPTIONS: AvifOptions,
+  IGNORE_FILENAMES: string[],
   strapi: Core.Service
 ) => {
   const filePath = file.filepath;
+
+  const shouldIgnoreFile = IGNORE_FILENAMES.some(pattern => 
+    minimatch(file.originalFilename || '', pattern)
+  );
+
+  if (shouldIgnoreFile) {
+    strapi.log.info(
+      `Plugin (strapi-plugin-avif-converter): Image Converter Middleware: Ignoring file ${file.originalFilename} due to ignore pattern`
+    );
+    return;
+  }
 
   if (IMAGE_TYPES.includes(file.mimetype)) {
     const avifFileName = `${parse(file.originalFilename).name}.avif`;

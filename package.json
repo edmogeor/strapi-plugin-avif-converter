@@ -19,7 +19,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "strapi-plugin build",
@@ -37,6 +38,9 @@
     "prettier": "^3.3.3",
     "typescript": "^5.6.3"
   },
+  "dependencies": {
+    "minimatch": "^9.0.0"
+  },
   "peerDependencies": {
     "@strapi/sdk-plugin": "^5.2.7",
     "@strapi/strapi": "^5.1.1",
@@ -53,7 +57,7 @@
     "url": "https://github.com/edmogeor/strapi-plugin-avif-converter.git"
   },
   "homepage": "https://dnlnwk.de/",
-  "name": "strapi-plugin-avif-converter",
+  "name": "@edmogeor/strapi-plugin-avif-converter",
   "description": "A Strapi plugin that converts images to AVIF format.",
   "license": "MIT",
   "author": "Daniel Nowak <daniel@dnlnwk.de>",
