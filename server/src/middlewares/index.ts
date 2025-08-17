@@ -1,5 +1,5 @@
-import convertToWebp from './convertToWebp';
+import convertToAvif from './convertToAvif';
 
 export default {
-  convertToWebp,
+  convertToAvif,
 };

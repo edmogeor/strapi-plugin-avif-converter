@@ -1,6 +1,6 @@
 import type { Core } from '@strapi/strapi';
 import { Context, Next } from 'koa';
-import sharp, { WebpOptions } from 'sharp';
+import sharp, { AvifOptions } from 'sharp';
 import { promises as fs } from 'fs';
 import { parse, join, dirname } from 'path';
 import { Files, File } from 'formidable';
@@ -44,35 +44,35 @@ const processFile = async (
   file: File,
   ctx: Context,
   IMAGE_TYPES: string[],
-  SHARP_OPTIONS: WebpOptions,
+  SHARP_OPTIONS: AvifOptions,
   strapi: Core.Service
 ) => {
   const filePath = file.filepath;
 
   if (IMAGE_TYPES.includes(file.mimetype)) {
-    const webpFileName = `${parse(file.originalFilename).name}.webp`;
-    const webpFilePath = join(dirname(filePath), webpFileName);
+    const avifFileName = `${parse(file.originalFilename).name}.avif`;
+    const avifFilePath = join(dirname(filePath), avifFileName);
     const fileInfo = JSON.parse(ctx.request.body.fileInfo);
-    fileInfo.name = webpFileName;
+    fileInfo.name = avifFileName;
     ctx.request.body.fileInfo = JSON.stringify(fileInfo);
 
     try {
-      const sharpResult = await sharp(filePath).webp(SHARP_OPTIONS).toFile(webpFilePath);
+      const sharpResult = await sharp(filePath).avif(SHARP_OPTIONS).toFile(avifFilePath);
       await fs.unlink(filePath);
 
       file.size = sharpResult.size;
-      file.filepath = webpFilePath;
-      file.originalFilename = webpFileName;
-      file.mimetype = 'image/webp';
+      file.filepath = avifFilePath;
+      file.originalFilename = avifFileName;
+      file.mimetype = 'image/avif';
     } catch (error) {
       strapi.log.error(
-        `Plugin (strapi-plugin-webp-converter): Image Converter Middleware: Error converting ${file.originalFilename} to webp:`,
+        `Plugin (strapi-plugin-avif-converter): Image Converter Middleware: Error converting ${file.originalFilename} to avif:`,
         error
       );
     }
   } else {
     strapi.log.info(
-      `Plugin (strapi-plugin-webp-converter): Image Converter Middleware: No convertable image ${file.originalFilename}`
+      `Plugin (strapi-plugin-avif-converter): Image Converter Middleware: No convertable image ${file.originalFilename}`
     );
   }
 };

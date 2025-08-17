@@ -1,9 +1,9 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.0",
   "keywords": [
     "strapi",
     "strapi-plugin",
-    "webp",
+    "avif",
     "converter",
     "image"
   ],
@@ -42,17 +42,17 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "webp-converter",
-    "displayName": "Simple WebP Converter",
-    "description": "A Strapi plugin that converts images to WebP format."
+    "name": "avif-converter",
+    "displayName": "Simple AVIF Converter",
+    "description": "A Strapi plugin that converts images to AVIF format."
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dnlnwk/strapi-plugin-webp-converter.git"
+    "url": "https://github.com/edmogeor/strapi-plugin-avif-converter.git"
   },
   "homepage": "https://dnlnwk.de/",
-  "name": "strapi-plugin-webp-converter",
-  "description": "A Strapi plugin that converts images to WebP format.",
+  "name": "strapi-plugin-avif-converter",
+  "description": "A Strapi plugin that converts images to AVIF format.",
   "license": "MIT",
   "author": "Daniel Nowak <daniel@dnlnwk.de>",
   "maintainers": [

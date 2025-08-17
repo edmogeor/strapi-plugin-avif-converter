@@ -1,6 +1,6 @@
-# strapi-plugin-webp-converter
+# strapi-plugin-avif-converter
 
-A plugin for [Strapi](https://github.com/strapi/strapi) that automatically converts uploaded images to the WebP format using the [sharp](https://sharp.pixelplumbing.com/api-output#webp) library. It ensures that your images are optimized for web performance by leveraging the benefits of the WebP format.
+A plugin for [Strapi](https://github.com/strapi/strapi) that automatically converts uploaded images to the AVIF format using the [sharp](https://sharp.pixelplumbing.com/api-output#avif) library. It ensures that your images are optimized for web performance by leveraging the benefits of the AVIF format.
 
 ### Supported Strapi versions
 
@@ -11,13 +11,13 @@ A plugin for [Strapi](https://github.com/strapi/strapi) that automatically conve
 ## Installation
 
 ```sh
-npm install strapi-plugin-webp-converter
+npm install strapi-plugin-avif-converter
 ```
 
 **or**
 
 ```sh
-yarn add strapi-plugin-webp-converter
+yarn add strapi-plugin-avif-converter
 ```
 
 ## Configuration
@@ -31,13 +31,13 @@ Javascript configuration
 ```javascript
 module.exports = ({ env }) => ({
   // ...
-  'webp-converter': {
+  'avif-converter': {
     enabled: true,
     config: {
-      // mimeTypes that converts to WebP. Default is ['image/png', 'image/jpeg', 'image/jpg']
+      // mimeTypes that converts to AVIF. Default is ['image/png', 'image/jpeg', 'image/jpg']
       mimeTypes: undefined,
       options: {
-        // WebP options: https://sharp.pixelplumbing.com/api-output#webp
+        // AVIF options: https://sharp.pixelplumbing.com/api-output#avif
       },
     },
   },
@@ -50,13 +50,13 @@ Typescript configuration
 ```typescript
 export default () => ({
   // ...
-  'webp-converter': {
+  'avif-converter': {
     enabled: true,
     config: {
-      // mimeTypes that converts to WebP. Default is ['image/png', 'image/jpeg', 'image/jpg']
+      // mimeTypes that converts to AVIF. Default is ['image/png', 'image/jpeg', 'image/jpg']
       mimeTypes: undefined,
       options: {
-        // WebP options: https://sharp.pixelplumbing.com/api-output#webp
+        // AVIF options: https://sharp.pixelplumbing.com/api-output#avif
       },
     },
   },
