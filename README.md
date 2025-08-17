@@ -22,19 +22,18 @@ yarn add strapi-plugin-avif-converter
 ```
 
 ### Option 2: From GitHub source
-If installing directly from GitHub, you need to build the plugin after installation:
+If installing directly from GitHub, the plugin will automatically build after installing dependencies:
 
 ```sh
 # Clone the repository
-git clone https://github.com/your-username/strapi-plugin-avif-converter.git
+git clone https://github.com/edmogeor/strapi-plugin-avif-converter.git
 cd strapi-plugin-avif-converter
 
-# Install dependencies and build
+# Install dependencies (automatically builds)
 npm install
-npm run build
 ```
 
-**Note**: The `dist` folder is not included in the GitHub repository and must be built locally.
+**Note**: The `dist` folder is not included in the GitHub repository and is automatically built during `npm install` via the `prepare` script.
 
 ## Configuration
 
