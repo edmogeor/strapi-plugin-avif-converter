@@ -14,13 +14,13 @@ Based on the original [strapi-plugin-webp-converter](https://github.com/alexisbo
 
 ### Option 1: From npm (recommended)
 ```sh
-npm install strapi-plugin-avif-converter
+npm install @edmogeor/strapi-plugin-avif-converter
 ```
 
 **or**
 
 ```sh
-yarn add strapi-plugin-avif-converter
+yarn add @edmogeor/strapi-plugin-avif-converter
 ```
 
 ### Option 2: From GitHub source
